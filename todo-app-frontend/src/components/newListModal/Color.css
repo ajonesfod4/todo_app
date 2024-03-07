@@ -1,0 +1,32 @@
+.Color {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Color:hover {
+  background-color: #d6daff;
+}
+
+.color-and-name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.color-circle-container {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-circle {
+  border-radius: 50%;
+  width: 1.125rem;
+  height: 1.125rem;
+}

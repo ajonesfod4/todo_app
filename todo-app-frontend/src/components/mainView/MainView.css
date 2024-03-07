@@ -1,0 +1,12 @@
+.mv-modal-container {
+  position: relative;
+}
+
+.lists-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}

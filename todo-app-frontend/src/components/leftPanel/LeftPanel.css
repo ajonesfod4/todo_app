@@ -1,0 +1,106 @@
+.LeftPanel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+  gap: 10px;
+}
+
+/* button */
+.add-task-button-container {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+  gap: 10px;
+  padding-top: 5px;
+  padding: 5px;
+  background-color: rgb(214, 214, 214);
+  color: #8e2cdd;
+  border: none;
+  font-weight: bold;
+}
+
+.add-task-button-container:active {
+  transform: scale(0.97);
+}
+
+.add-task-button-container:hover {
+  background-color: #d6daff;
+}
+
+.add-task-button {
+  height: 25px;
+  width: 25px;
+}
+
+.add-task-button-text {
+  font-size: 1.25rem;
+}
+
+.lp-header {
+  width: 95%;
+  border-bottom: 1px solid gray;
+}
+
+.list-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  border-bottom: 1px solid gray;
+}
+
+.list-header {
+  font-size: 1.25rem;
+}
+
+.list-header-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 20%;
+}
+
+/* button */
+.add-list-button,
+.hide-lists-button {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+  background-color: rgb(214, 214, 214);
+  height: 20px;
+  width: 20px;
+}
+
+.add-list-button:active {
+  transform: scale(0.9);
+}
+
+.list-container {
+  width: 95%;
+  padding-left: 10px;
+}
+
+/* button */
+.list-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background-color: none;
+  background-color: rgb(214, 214, 214);
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.list-item-container:hover {
+  background-color: #d6daff;
+}

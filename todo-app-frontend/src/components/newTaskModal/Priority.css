@@ -1,0 +1,16 @@
+.Priority {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+}
+
+.Priority:hover {
+  background-color: #d6daff;
+}
+
+.flag-container {
+  width: 16px;
+  height: 16px;
+}

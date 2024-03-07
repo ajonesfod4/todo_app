@@ -1,0 +1,85 @@
+.NewListModal {
+  background-color: white;
+  width: 360px;
+  min-height: 10vh;
+  height: 250px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+  gap: 20px;
+  position: absolute;
+  left: 100px;
+  z-index: 5;
+}
+
+.nl-modal-header,
+.list-name-input-container,
+.list-color-input-container,
+.nlm-buttons-container {
+  width: 90%;
+}
+
+.nl-modal-header {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.list-name-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.list-color-input-container {
+  position: relative;
+}
+
+.color-dropdown-button-container {
+  height: 2rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+  background-color: white;
+}
+
+.color-modal-container {
+  position: absolute;
+  width: 99%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.nlm-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-button,
+.add-button {
+  height: 1.75rem;
+  width: 75px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+}
+
+.cancel-button {
+  background-color: rgb(212, 212, 212);
+  color: black;
+}
+
+.add-button {
+  background-color: #a23cf6;
+  color: white;
+}
+
+.nlm-button:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,9 @@
+.ColorModal {
+  border: 1px solid gray;
+  background-color: white;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  padding-bottom: 5px;
+  padding-left: 4px;
+}

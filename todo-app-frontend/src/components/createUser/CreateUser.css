@@ -1,0 +1,50 @@
+.CreateUser {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 360px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  margin-top: 10vh;
+  padding-top: 5vh;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.login-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #a23cf6;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: fit-content;
+  gap: 10px;
+}
+
+.cr-label {
+  margin-bottom: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+.pwd-input {
+  border: 1px solid gray;
+}
+
+.error-message {
+  color: red;
+  height: 1.5rem;
+}

@@ -1,0 +1,12 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to top right, #22eccb, #9fa8df, #a23cf6);
+}
+
+.app-button:hover {
+  cursor: pointer;
+}

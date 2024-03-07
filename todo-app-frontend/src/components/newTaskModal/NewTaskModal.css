@@ -1,0 +1,92 @@
+.NewTaskModal {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  min-width: 360px;
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: absolute;
+  z-index: 5;
+  left: 100px;
+  top: 25px;
+}
+
+.ntm-top-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-task-name {
+  border: none;
+  color: gray;
+}
+
+.new-task-due-date {
+  font-size: 0.875rem;
+}
+
+.ntm-property-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.ntm-due-date-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding-left: 5px;
+}
+
+.ntm-due-date-label,
+.priority-label {
+  font-size: 0.875rem;
+}
+
+.priority-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.priority-button {
+  height: 1.75rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  position: relative;
+  width: 90px;
+  padding: 5px;
+}
+
+.priority-lable {
+  width: 15px;
+  height: 15px;
+}
+
+.ntm-bottom-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ntm-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.ntm-list-dropdown {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+}
