@@ -23,38 +23,51 @@ const CreateUser = () => {
    */
   const firstPwd = useRef("");
   const secondPwd = useRef("");
-  const pwdValidationStatus = useRef("");
+  const pwdMatchStatus = useRef("");
   const pwdTextValidationStatus = useRef({
     hasLowercase: false,
     hasUppercase: false,
     hasNumber: false,
     hasLength: false,
   });
+  const isPwdValidated = useRef(false);
 
   const navigate = useNavigate();
 
+  //sets the value of isPwdValidated
+  const validatePwd = () => {
+    //check if all properites of pwdTextValidationStatus are true
+    const arePropsTrue = checkIfAllPropertiesAreTrue(
+      pwdTextValidationStatus.current
+    );
+
+    //sets the value of isPwdValidated to true if the pwd text is validated and if the length of both pwd matches
+    isPwdValidated.current =
+      arePropsTrue && pwdMatchStatus === "Yes" ? true : false;
+  };
+
   //validates the pwd and handles the styling for password inputs to reflect
   //matching or non-matching passwords
-  const validatePwd = (e) => {
+  const validatePwdMatch = (e) => {
     secondPwd.current = e.target.value;
 
     //password validation blocks
     //first if statement resets style if both password inputs are empty
     if (secondPwd.current === "" && firstPwd.current === "") {
-      pwdValidationStatus.current = "none";
+      pwdMatchStatus.current = "none";
     }
+
     //else statement checks if passwords match
     else {
       if (firstPwd.current === secondPwd.current) {
-        pwdValidationStatus.current = "yes";
-        console.log("yes");
+        pwdMatchStatus.current = "yes";
       } else {
-        pwdValidationStatus.current = "no";
+        pwdMatchStatus.current = "no";
       }
     }
 
     //styling blocks
-    switch (pwdValidationStatus.current) {
+    switch (pwdMatchStatus.current) {
       case "yes":
         setStyle({ border: "2px solid green" });
         break;
@@ -98,14 +111,6 @@ const CreateUser = () => {
       pwdTextValidationStatus.current.hasNumber = true;
       setNumberStyle({ display: "none" });
     }
-
-    // //check if all properites of pwdTextValidationStatus are true
-    // const arePropsTrue = checkIfAllPropertiesAreTrue(
-    //   pwdTextValidationStatus.current
-    // );
-
-    // //return true if all text validations are true, and false if at least one is false
-    // return arePropsTrue ? true : false;
   };
 
   const resetPwdTextValidationStatus = () => {
@@ -134,14 +139,16 @@ const CreateUser = () => {
   const createUser = async () => {
     //returns out of the function if the pwd is not validated or the username is empty
     //ensures the post request is not sent
-    if (pwdValidationStatus.current !== "yes") return;
+    if (pwdMatchStatus.current !== "yes") return;
     if (newUsername.length === 0) return;
 
+    //set the user credentials to be sent as the body of the post request
     const userCredentials = {
       username: newUsername,
       password: firstPwd.current,
     };
 
+    //-see if this condition can be put into a different function.  It feels out of place here
     if (firstPwd.current === secondPwd.current && firstPwd !== "") {
       const response = await axios
         .post("http://localhost:3300/createUser", userCredentials)
@@ -196,7 +203,7 @@ const CreateUser = () => {
           type="password"
           placeholder="Re-enter your password"
           style={style}
-          onChange={(e) => validatePwd(e)}
+          onChange={(e) => validatePwdMatch(e)}
         />
         <div className="pwd-validation-checks">
           <p className="pwd-description pwd-validation">
