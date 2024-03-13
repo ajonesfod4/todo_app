@@ -3,10 +3,18 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+//- make is so that this page uses one variable regarding pwd validation
+
 const CreateUser = () => {
   const [newUsername, setNewUsername] = useState("");
   const [style, setStyle] = useState({ borderColor: "none" });
   const [errorMessage, setErrorMessage] = useState("");
+
+  //pwd text validation state values
+  const [lowercaseStyle, setLowercaseStyle] = useState({});
+  const [uppercaseStyle, setuppercaseStyle] = useState({});
+  const [numberStyle, setNumberStyle] = useState({});
+  const [lengthStyle, setLengthStyle] = useState({});
 
   /**
    * refs are used to ensure pwd validation and styling happens after
@@ -16,6 +24,12 @@ const CreateUser = () => {
   const firstPwd = useRef("");
   const secondPwd = useRef("");
   const pwdValidationStatus = useRef("");
+  const pwdTextValidationStatus = useRef({
+    hasLowercase: false,
+    hasUppercase: false,
+    hasNumber: false,
+    hasLength: false,
+  });
 
   const navigate = useNavigate();
 
@@ -25,12 +39,18 @@ const CreateUser = () => {
     secondPwd.current = e.target.value;
 
     //password validation blocks
+    //first if statement resets style if both password inputs are empty
     if (secondPwd.current === "" && firstPwd.current === "") {
       pwdValidationStatus.current = "none";
-    } else {
-      firstPwd.current === secondPwd.current
-        ? (pwdValidationStatus.current = "yes")
-        : (pwdValidationStatus.current = "no");
+    }
+    //else statement checks if passwords match
+    else {
+      if (firstPwd.current === secondPwd.current) {
+        pwdValidationStatus.current = "yes";
+        console.log("yes");
+      } else {
+        pwdValidationStatus.current = "no";
+      }
     }
 
     //styling blocks
@@ -48,6 +68,67 @@ const CreateUser = () => {
         setStyle({ border: "1px solid gray" });
         break;
     }
+  };
+
+  //validates the pwd text to make sure it matches what is required
+  //returns true if all text validation properties are met
+  const validatePwdText = (pwd) => {
+    resetPwdTextValidationStatus();
+
+    // Check if the length of the password is in the desired range
+    if (pwd.length >= 8 && pwd.length <= 30) {
+      pwdTextValidationStatus.current.length = true;
+      setLengthStyle({ display: "none" });
+    }
+
+    // Check if the string contains at least one lowercase letter
+    if (/[a-z]/.test(pwd)) {
+      pwdTextValidationStatus.current.hasLowercase = true;
+      setLowercaseStyle({ display: "none" });
+    }
+
+    // Check if the string contains at least one uppercase letter
+    if (/[A-Z]/.test(pwd)) {
+      pwdTextValidationStatus.current.hasUppercase = true;
+      setuppercaseStyle({ display: "none" });
+    }
+
+    // Check if the string contains at least one number
+    if (/\d/.test(pwd)) {
+      pwdTextValidationStatus.current.hasNumber = true;
+      setNumberStyle({ display: "none" });
+    }
+
+    // //check if all properites of pwdTextValidationStatus are true
+    // const arePropsTrue = checkIfAllPropertiesAreTrue(
+    //   pwdTextValidationStatus.current
+    // );
+
+    // //return true if all text validations are true, and false if at least one is false
+    // return arePropsTrue ? true : false;
+  };
+
+  const resetPwdTextValidationStatus = () => {
+    pwdTextValidationStatus.current.hasLowercase = false;
+    setLowercaseStyle({ display: "" });
+
+    pwdTextValidationStatus.current.hasUppercase = false;
+    setuppercaseStyle({ display: "" });
+
+    pwdTextValidationStatus.current.hasNumber = false;
+    setNumberStyle({ display: "" });
+
+    pwdTextValidationStatus.current.length = false;
+    setLengthStyle({ display: "" });
+  };
+
+  const checkIfAllPropertiesAreTrue = (obj) => {
+    for (let key in obj) {
+      if (!obj[key]) {
+        return false; // If any property is false, return false immediately
+      }
+    }
+    return true; // If all properties are true, return true
   };
 
   const createUser = async () => {
@@ -101,9 +182,11 @@ const CreateUser = () => {
           className="pwd-input"
           type="password"
           placeholder="Type your password"
+          maxLength={30}
           style={style}
           onChange={(e) => {
             firstPwd.current = e.target.value;
+            validatePwdText(firstPwd.current);
             if (secondPwd.current === "" && firstPwd.current === "")
               setStyle({ border: "1px solid gray" });
           }}
@@ -115,6 +198,23 @@ const CreateUser = () => {
           style={style}
           onChange={(e) => validatePwd(e)}
         />
+        <div className="pwd-validation-checks">
+          <p className="pwd-description pwd-validation">
+            Password must contain:
+          </p>
+          <p className="pwd-lowercase pwd-validation" style={lowercaseStyle}>
+            A lowercase letter
+          </p>
+          <p className="pwd-uppercase pwd-validation" style={uppercaseStyle}>
+            An uppercase letter
+          </p>
+          <p className="pwd-number pwd-validation" style={numberStyle}>
+            A number
+          </p>
+          <p className="pwd-minimum-char pwd-validation" style={lengthStyle}>
+            Minimum 8 characters
+          </p>
+        </div>
         <div className="error-message">
           {errorMessage === "Request failed with status code 409" ? (
             <>Username already exists</>

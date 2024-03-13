@@ -9,6 +9,9 @@ import CreateUser from "./components/createUser/CreateUser";
 import Home from "./components/home/Home";
 
 //- close edit modal on button press
+//- create user
+//-   make it mobile friendly
+//-   make it validate password
 
 function App() {
   const [username, setUsername] = useState("");
